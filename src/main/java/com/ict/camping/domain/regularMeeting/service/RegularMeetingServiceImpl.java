@@ -141,4 +141,16 @@ public int createMeeting(RegularMeetingVO meeting, List<String> hashtags) {
         return regularMeetingMapper.isMember(meetingId, userIdx);
    
 }
+
+@Override
+@Transactional
+public void leaveMeeting(int meetingId, int userIdx) {
+    boolean isMember = regularMeetingMapper.isMember(meetingId, userIdx);
+    if (!isMember) {
+        throw new IllegalStateException("해당 모임의 멤버가 아닙니다.");
+    }
+    // 모임 탈퇴 처리
+    regularMeetingMapper.leaveMeeting(meetingId, userIdx);
+}
+
 }

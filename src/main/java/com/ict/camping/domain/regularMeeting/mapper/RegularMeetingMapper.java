@@ -3,6 +3,8 @@ package com.ict.camping.domain.regularMeeting.mapper;
 import com.ict.camping.domain.regularMeeting.vo.HashtagVO;
 import com.ict.camping.domain.regularMeeting.vo.RegularMeetingVO;
 import org.apache.ibatis.annotations.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -54,5 +56,8 @@ public interface RegularMeetingMapper {
 
     // 가입 멤버 확인
     boolean isMember(@Param("meetingId") int meetingId, @Param("userIdx") int userIdx);
+
+    // 모임 탈퇴
+    void leaveMeeting(@Param("meetingId") int meetingId, @Param("userIdx") int userIdx);
 
 }

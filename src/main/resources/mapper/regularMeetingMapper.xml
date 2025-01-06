@@ -209,4 +209,9 @@
     )
 </select>
 
+<delete id="leaveMeeting" parameterType="map">
+    DELETE FROM regular_meeting_members
+    WHERE meeting_idx = #{meetingId} AND user_idx = #{userIdx}
+</delete>
+
 </mapper>

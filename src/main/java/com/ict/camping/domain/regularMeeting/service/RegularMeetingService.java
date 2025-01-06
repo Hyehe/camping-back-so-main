@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface RegularMeetingService {
 
@@ -51,5 +53,9 @@ public interface RegularMeetingService {
 
     // 가입 멤버 확인
     boolean isMember(@Param("meetingId") int meetingId, @Param("userIdx") int userIdx);
+
+    // 모임 탈퇴
+    void leaveMeeting(@Param("meetingId") int meetingId, @Param("userIdx") int userIdx);
+
     
 }

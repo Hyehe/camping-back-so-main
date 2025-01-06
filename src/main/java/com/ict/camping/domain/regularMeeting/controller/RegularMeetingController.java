@@ -236,14 +236,28 @@ public class RegularMeetingController {
 
     // 모입 가입 멤버 확인
     @GetMapping("/detail/{meetingId}/ismember")
-    public ResponseEntity<Boolean> isMember(@PathVariable("meetingId") int meetingId,
-            @RequestParam("user_idx") int userIdx) {
+    public ResponseEntity<Boolean> isMember(@PathVariable("meetingId") int meetingId, @RequestParam("user_idx") int userIdx) {
         try {
             boolean memberStatus = regularMeetingService.isMember(meetingId, userIdx);
             return ResponseEntity.ok(memberStatus);
         } catch (Exception e) {
             log.error("Error checking isMember status", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);
+        }
+    }
+
+    // 모임 탈퇴
+    @PostMapping("/detail/{meetingId}/leave")
+    public ResponseEntity<String> leaveMeeting(@PathVariable("meetingId") int meetingId, @RequestParam("user_idx") int userIdx) {
+        System.out.println("fhkf롸롸롸롸ㅗ라ㅘㅗㅗㄹ롸가입롸롸롸ㅗ라ㅘㅗㅗㄹ롸가입");
+        try {
+            regularMeetingService.leaveMeeting(meetingId, userIdx);
+            return ResponseEntity.ok("모임을 성공적으로 탈퇴했습니다.");
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            log.error("모임 탈퇴 실패", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("모임 탈퇴 중 오류가 발생했습니다.");
         }
     }
 
