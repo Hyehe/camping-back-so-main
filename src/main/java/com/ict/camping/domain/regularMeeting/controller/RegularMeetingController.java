@@ -249,7 +249,6 @@ public class RegularMeetingController {
     // 모임 탈퇴
     @PostMapping("/detail/{meetingId}/leave")
     public ResponseEntity<String> leaveMeeting(@PathVariable("meetingId") int meetingId, @RequestParam("user_idx") int userIdx) {
-        System.out.println("fhkf롸롸롸롸ㅗ라ㅘㅗㅗㄹ롸가입롸롸롸ㅗ라ㅘㅗㅗㄹ롸가입");
         try {
             regularMeetingService.leaveMeeting(meetingId, userIdx);
             return ResponseEntity.ok("모임을 성공적으로 탈퇴했습니다.");

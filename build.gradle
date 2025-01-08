@@ -37,7 +37,6 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	
 	testImplementation 'org.springframework.security:spring-security-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
 
 	// implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
@@ -59,6 +58,10 @@ dependencies {
 	implementation 'com.twilio.sdk:twilio:8.32.0'
 
 	implementation 'com.google.api-client:google-api-client:1.32.1'
+
+// Spring WebSocket 스타터는 호환되는 버전으로 자동 관리됩니다.
+implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
 }
 
 tasks.named('test') {

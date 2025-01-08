@@ -56,7 +56,10 @@ public class SecurityConfig {
               // 요청별 권한 설정
               .authorizeHttpRequests(authorize -> authorize
                       .requestMatchers("/uploads/**").permitAll()
+                      .requestMatchers("/api/upload/file").permitAll()
                       .requestMatchers("/oauth2/**").permitAll()
+                      .requestMatchers("/message", "/message/**").permitAll()
+                      .requestMatchers("/api/ws/chat", "/api/ws/chat/**", "/api/chat/**").permitAll()
                       .requestMatchers("/api/regular-meetings/detail/**").permitAll()
                       // 특정 URL에 인증없이 허용
                       .requestMatchers("/api/users/join", "/api/users/login", "/api/users/idCheck","/api/camping/**","/api/camping/sites/{contentId}",
