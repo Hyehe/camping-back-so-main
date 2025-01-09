@@ -73,6 +73,11 @@ public class ChatServiceImpl implements ChatService {
         return chatMapper.getMessagesByRoomIdx(roomId);
     }
 
+    @Override
+    public ChatRoomVO findChatRoomByRoomIdx(int roomId) {
+        return chatMapper.findChatRoomByRoomIdx(roomId);
+    }
+
 
 
     // @Override
@@ -85,9 +90,6 @@ public class ChatServiceImpl implements ChatService {
     //     return chatMapper.findAvatarUrlByUserIdx(sender_idx);
     // }
 
-    @Override
-    public ChatRoomVO findChatRoomByRoomIdx(int roomId) {
-        return chatMapper.findChatRoomByRoomIdx(roomId);
-    }
+    
 
 }

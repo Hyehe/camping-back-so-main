@@ -65,10 +65,7 @@
     <!-- <select id="getAvatarUrlByUserIdx" parameterType="map" resultType="string">
         SELECT u.avatar_url
         FROM users u
-        JOIN regular_meeting_members rmm ON rmm.user_idx = u.user_idx
-        JOIN regular_meetings m ON m.meeting_idx = rmm.meeting_idx
         WHERE u.user_idx = #{user_idx}
-          AND m.meeting_idx = #{meeting_idx}
         LIMIT 1
     </select> -->
 

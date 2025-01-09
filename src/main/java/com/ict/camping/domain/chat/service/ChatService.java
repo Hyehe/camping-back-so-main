@@ -21,11 +21,11 @@ public interface ChatService {
     // 특정 채팅방의 메시지들 조회
     List<ChatMessageVO> getMessages(@PathVariable("roomId") int roomId);
 
+    ChatRoomVO findChatRoomByRoomIdx(int roomId);
+
     // 사용자별 채팅방 목록 조회
     // public List<ChatRoomVO> getChatRoomsByUser(int userIdx);
 
     // String getAvatarUrlByUserIdx(int sender_idx);
-
-    ChatRoomVO findChatRoomByRoomIdx(int roomId);
 
 }
