@@ -18,22 +18,22 @@ public class ChatServiceImpl implements ChatService {
   private final ChatMapper chatMapper;
 
   @Override
-  public ChatRoomVO createChatRoom(int meetingIdx) {
+  public ChatRoomVO createChatRoom(int meeting_idx) {
     // 채팅방 vo생성
     ChatRoomVO vo = new ChatRoomVO();
-    vo.setMeeting_idx(meetingIdx);
+    vo.setMeeting_idx(meeting_idx);
 
     // db
     chatMapper.createChatRoom(vo);
 
     // 생성된 채팅방 가져오기 (room_idx 조회)
-    ChatRoomVO createdRoom = chatMapper.findChatRoomByMeeting(meetingIdx);
+    ChatRoomVO createdRoom = chatMapper.findChatRoomByMeeting(meeting_idx);
     return createdRoom;
   }
 
   @Override
-  public ChatRoomVO getChatRoomByMeeting(int meetingIdx) {
-    return chatMapper.findChatRoomByMeeting(meetingIdx);
+  public ChatRoomVO getChatRoomByMeeting(int meeting_idx) {
+    return chatMapper.findChatRoomByMeeting(meeting_idx);
   }
 
   @Override
@@ -75,14 +75,19 @@ public class ChatServiceImpl implements ChatService {
 
 
 
-    @Override
-    public List<ChatRoomVO> getChatRoomsByUser(int userIdx) {
-        return chatMapper.getChatRoomsByUser(userIdx);
-    }
+    // @Override
+    // public List<ChatRoomVO> getChatRoomsByUser(int userIdx) {
+    //     return chatMapper.getChatRoomsByUser(userIdx);
+    // }
+
+    // @Override
+    // public String getAvatarUrlByUserIdx(int sender_idx) {
+    //     return chatMapper.findAvatarUrlByUserIdx(sender_idx);
+    // }
 
     @Override
-    public String getAvatarUrlByUserIdx(int sender_idx) {
-        return chatMapper.findAvatarUrlByUserIdx(sender_idx);
+    public ChatRoomVO findChatRoomByRoomIdx(int roomId) {
+        return chatMapper.findChatRoomByRoomIdx(roomId);
     }
 
 }

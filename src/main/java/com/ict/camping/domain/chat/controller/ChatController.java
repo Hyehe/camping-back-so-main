@@ -22,16 +22,16 @@ import java.util.List;
 public class ChatController {
 
     private ChatService chatService;
-    
-         @Autowired
-        public void ChatRestController(ChatService chatService) {
-            this.chatService = chatService;
+
+    @Autowired
+    public void ChatRestController(ChatService chatService) {
+        this.chatService = chatService;
     }
 
     // 채팅방 조회
-    @GetMapping("/room/{meetingId}")
-    public ResponseEntity<ChatRoomVO> getChatRoom(@PathVariable("meetingId") int meetingId) {
-        ChatRoomVO room = chatService.getChatRoomByMeeting(meetingId);
+    @GetMapping("/room/{meeting_idx}")
+    public ResponseEntity<ChatRoomVO> getChatRoom(@PathVariable("meeting_idx") int meeting_idx) {
+        ChatRoomVO room = chatService.getChatRoomByMeeting(meeting_idx);
         if (room != null) {
             return ResponseEntity.ok(room);
         } else {
@@ -48,10 +48,11 @@ public class ChatController {
 
     // 사용자별 채팅방 목록 조회
     // @GetMapping("/rooms")
-    // public ResponseEntity<List<ChatRoomVO>> getChatRooms(@Param("user_idx") int userIdx) {
-    //     List<ChatRoomVO> chatRooms = chatService.getChatRoomsByUser(userIdx);
-    //     return ResponseEntity.ok(chatRooms);
-    // } 
+    // public ResponseEntity<List<ChatRoomVO>> getChatRooms(@Param("user_idx") int
+    // userIdx) {
+    // List<ChatRoomVO> chatRooms = chatService.getChatRoomsByUser(userIdx);
+    // return ResponseEntity.ok(chatRooms);
+    // }
 
     // 채팅 메시지 기록 조회
     @GetMapping("/messages/{roomId}")
@@ -59,5 +60,14 @@ public class ChatController {
         List<ChatMessageVO> messages = chatService.getMessages(roomId);
         return ResponseEntity.ok(messages);
     }
-    
+
+    @GetMapping("/room-info/{roomId}")
+    public ResponseEntity<ChatRoomVO> getChatRoomInfo(@PathVariable("roomId") int roomId) {
+        ChatRoomVO room = chatService.findChatRoomByRoomIdx(roomId);
+        if (room != null)
+            return ResponseEntity.ok(room);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
 }

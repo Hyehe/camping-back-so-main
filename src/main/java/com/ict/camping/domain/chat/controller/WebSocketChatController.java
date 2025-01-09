@@ -1,5 +1,7 @@
 package com.ict.camping.domain.chat.controller;
 
+import java.util.List;
+
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -9,7 +11,9 @@ import com.ict.camping.domain.chat.service.ChatService;
 import com.ict.camping.domain.chat.vo.ChatMessageVO;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class WebSocketChatController {
@@ -22,13 +26,17 @@ public class WebSocketChatController {
    */
   @MessageMapping("/message")
   public void sendMessage(ChatMessageVO message) {
+    System.out.println("111111롸로라ㅗ라ㅗㄺㅁㄷ미ㅓㄴ이ㅏ춘춘");
     chatService.sendMessage(message);
-
+    
     // sender_ avatar_url 추가
-    String avatar = chatService.getAvatarUrlByUserIdx(message.getSender_idx());
-    message.setSender_avatar_url(avatar);
+    List<ChatMessageVO> messages = chatService.getMessages(message.getRoom_idx());
+    ChatMessageVO latesMsg = messages.isEmpty() ? message : messages.get(messages.size() - 1);
     // 모임별로 구독 주소를 분리
+    System.out.println("2222222롸로라ㅗ라ㅗㄺㅁㄷ미ㅓㄴ이ㅏ춘춘");
     simpMessagingTemplate.convertAndSend("/topic/chat/" + message.getRoom_idx(), message);
+    System.out.println("Message sent successfully to /topic/chat/" + message.getRoom_idx());
+    log.info("Message sent successfully to /topic/chat/{}", message.getRoom_idx());
   }
 
 }

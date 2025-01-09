@@ -10,10 +10,10 @@ import com.ict.camping.domain.chat.vo.ChatRoomVO;
 
 public interface ChatService {
   // 채팅방 생성
-    ChatRoomVO createChatRoom(int meetingIdx);
+    ChatRoomVO createChatRoom(int meeting_idx);
 
     // 특정 모임의 채팅방 조회
-    ChatRoomVO getChatRoomByMeeting(int meetingId);
+    ChatRoomVO getChatRoomByMeeting(int meeting_idx);
 
     // 메시지 전송(DB저장 + 알림)
     void sendMessage(ChatMessageVO msg);
@@ -22,8 +22,10 @@ public interface ChatService {
     List<ChatMessageVO> getMessages(@PathVariable("roomId") int roomId);
 
     // 사용자별 채팅방 목록 조회
-    public List<ChatRoomVO> getChatRoomsByUser(int userIdx);
+    // public List<ChatRoomVO> getChatRoomsByUser(int userIdx);
 
-    String getAvatarUrlByUserIdx(int sender_idx);
+    // String getAvatarUrlByUserIdx(int sender_idx);
+
+    ChatRoomVO findChatRoomByRoomIdx(int roomId);
 
 }
